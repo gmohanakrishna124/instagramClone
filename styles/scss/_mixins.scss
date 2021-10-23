@@ -1,0 +1,48 @@
+@mixin flexRow(){
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+@mixin  forColumn() {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+}
+@mixin fixedDimensions() {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    border: none;
+}
+@mixin  dimensions($width, $height, $padding, $margin, $position, $border) {
+    width: $width;
+    height: $height;
+    padding: $padding;
+    margin: $margin;
+    position: $position;
+    border: $border;
+}
+@mixin measurements($padding, $margin, $position, $border) {
+    padding: $padding;
+    margin: $margin;
+    position: $position;
+    border: $border;
+}
+@mixin fonts($fontSize, $fontColor, $fontWeight, $fontOpacity) {
+    font-size: $fontSize;
+    color: $fontColor;
+    font-weight: $fontWeight;
+    opacity: $fontOpacity;
+}
+//media queries break points
+@mixin for-extra-small-mobiles() {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
