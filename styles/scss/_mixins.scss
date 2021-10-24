@@ -5,7 +5,7 @@
     align-items: center;
     flex-wrap: nowrap;
 }
-@mixin  forColumn() {
+@mixin  flexColumn() {
     display: flex;
     flex-direction: column;
     justify-content: space-between;

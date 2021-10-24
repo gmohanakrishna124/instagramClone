@@ -11,6 +11,8 @@
   "dependencies": {
     "@heroicons/react": "^1.0.4",
     "babel": "^6.23.0",
+    "faker": "^5.5.3",
+    "formik": "^2.2.9",
     "framer": "^1.3.6",
     "next": "11.1.2",
     "react": "17.0.2",

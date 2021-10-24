@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import HomeStyle from '../styles/scss/Home.module.scss'
 import Header from '../components/Home/Header'
+import MainFeed from '../components/Home/MainFeed'
 export default function Home() {
   return (
     <div style = {{
@@ -21,6 +21,7 @@ export default function Home() {
       </Head>
 
       <Header />
+      <MainFeed />
     </div>
   )
 }

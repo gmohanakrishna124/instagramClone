@@ -1,0 +1,64 @@
+@import './mixins';
+.mainContainer{
+    @include dimensions(68%,auto,0,0,relative,none);
+    margin: auto;
+    @include flexRow();
+    .mcLeft{
+        @include dimensions(65%,auto,0,1.9rem .9rem 0 0,relative,none);
+        @include flexColumn();
+        justify-content: flex-start;
+        .mclTop{
+            @include dimensions(100%,auto,0 .6rem,0,relative,none);
+            @include flexRow();
+            justify-content: flex-start;
+            overflow-x: scroll;
+            border: 2px solid rgba(0,0,0,0.06);
+            background-color: #ffffff;
+            .mcltCards{
+                @include flexColumn();
+                justify-content: center;
+                @include dimensions(25%,auto,.9rem .2rem,0  .6rem 0 .2rem,relative,none);
+                
+                .mcltcImgContainer{
+                    @include dimensions(52px,52px,0,0,relative,none);
+                    cursor: pointer;
+                    .mclticImage{
+                        @include dimensions(100%,100%,0,0,relative,none);
+                        border-radius: 50px;
+                        border: 2.7px solid red;
+                        object-fit: contain;
+                        cursor: pointer;
+                    }
+                }
+                .mcltContent{
+                    @include dimensions(63px,auto,0,.1rem 0,relative,none);
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    
+                    @include fonts(.89rem,black,400,1);
+                }
+            }
+        }
+    }
+    .mcRight{
+        @include dimensions(31%,auto,0,0,relative,none);
+        .mcRightInner{
+            @include dimensions(100%,60vh,0,0,relative,none);
+            .mcrTop{
+                @include dimensions(100%,auto,0,0,relative,none);
+                @include flexRow();
+                .mcrtLeft{
+                    @include flexRow();
+                    justify-content: flex-start;
+                    .mcrtlLeft{
+                        @include dimensions(40px,40px,0,0,relative,none);
+                        .mcrtllImage{
+                            @include dimensions(100%,100%,0,0,relative,none);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
