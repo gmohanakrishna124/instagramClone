@@ -13,6 +13,7 @@ const MainFeed = () => {
            <div className = {MainSty.mcRight}>
                 <div className = {MainSty.mcRightInner}>
                     <UserDetail />
+                    <UserSuggestions />
                 </div>
            </div> 
         </div>

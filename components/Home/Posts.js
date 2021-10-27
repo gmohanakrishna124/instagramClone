@@ -4,6 +4,7 @@ import Image from 'next/dist/client/image'
 import AmazonLogo from '../../public/images/amazon.jpg'
 import Acessories from '../../public/images/acessories.jpg'
 import BestRider from '../../public/images/hero.jpg'
+import PostProfile from '../../public/images/profile.jpg'
 import InstagramLog from '../../public/images/instagramMobil.jpg'
 const Posts = () => {
     return (
@@ -58,7 +59,7 @@ const Posts = () => {
                     }}/>
                 </div>
                 <div className ={PostsSty.pcMiddle}>
-                    <Image className= {PostsSty.pcmImage} src = {AmazonLogo} layout="fill" />
+                    <Image className= {PostsSty.pcmImage} src = {PostProfile} layout="fill" />
                 </div>
                 <div className = {PostsSty.pcSubMiddle}>
                     <div className = {PostsSty.pcSubMiddleInner}>
