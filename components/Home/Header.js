@@ -7,7 +7,10 @@ import Image from 'next/dist/client/image'
 import {SearchIcon, PaperAirplaneIcon, HeartIcon,PlusCircleIcon} from '@heroicons/react/outline'
 import { HomeIcon } from '@heroicons/react/solid'
 import { getRouteMatcher } from 'next/dist/shared/lib/router/utils'
+import {useSession,signOut} from 'next-auth/react'
 const Header = () => {
+    const {data : session} = useSession();
+    console.log(session)
     return (
         <div className = {HomeNav.navContainer}>
             <div className={HomeNav.ncInner}>
@@ -61,7 +64,7 @@ const Header = () => {
                     </div>
                     <HeartIcon className = {HomeNav.nciIconss} />
                     <div className  = {HomeNav.nciUserLogo}>
-                        <Image className = {HomeNav.nciUsers} src = {UserProfile} layout="fill"/>
+                        <img onClick = {signOut} className = {HomeNav.nciUsers} src = {session?.user?.image} />
                     </div>
                 </div>
             </div>
