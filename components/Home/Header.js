@@ -8,8 +8,11 @@ import {SearchIcon, PaperAirplaneIcon, HeartIcon,PlusCircleIcon} from '@heroicon
 import { HomeIcon } from '@heroicons/react/solid'
 import { getRouteMatcher } from 'next/dist/shared/lib/router/utils'
 import {useSession,signOut} from 'next-auth/react'
+import {useRecoilState} from 'recoil'
+import {modalState} from '../../atoms/modalAtoms'
 const Header = () => {
     const {data : session} = useSession();
+    const [open, setOpen] = useRecoilState(modalState);
     console.log(session)
     return (
         <div className = {HomeNav.navContainer}>
@@ -58,7 +61,7 @@ const Header = () => {
                             borderRadius: '50px'
                         }}>6</p>
                     </div>
-                    <PlusCircleIcon className = {HomeNav.nciIconss } />
+                    <PlusCircleIcon onClick = {() => setOpen(true)} className = {HomeNav.nciIconss } />
                     <div className= {HomeNav.nciExoplore}>
                         <Image className = {HomeNav.ncieLogo} src = {ExploreImage} layout="fill"/>
                     </div>

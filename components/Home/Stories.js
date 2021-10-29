@@ -2,7 +2,9 @@ import { useState,useEffect} from 'react'
 import faker from 'faker'
 import Storie from './Storie'
 import MainSty from '../../styles/scss/MainFeed.module.scss'
+import {useSession} from 'next-auth/react'
 const Stories = () => {
+    const {data : session} = useSession();
     const [storieData , setStorieData] = useState([]);
 
     useEffect(()=>{
@@ -15,6 +17,12 @@ const Stories = () => {
     },[])
     return (
         <div className = {MainSty.mclTop}>
+            {session &&
+                <Storie 
+                    name = {session?.user?.name}
+                    image = {session?.user?.image}
+                />
+            }
             {storieData.map(({id,username, avatar})=>(
                 <Storie 
                     key  = {id}

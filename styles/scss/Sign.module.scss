@@ -1,0 +1,60 @@
+@import './mixins';
+.signContainer{
+    @include fixedDimensions();
+    @include flexColumn();
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 0 4rem 0;
+    .scInner{
+        @include dimensions(60%,auto,0,auto,relative,none);
+        @include flexRow();
+        justify-content: center;
+        .sciLeft{
+            @include dimensions(51%,75vh,0,0,relative,none);
+            overflow: hidden;
+            .scilImagee{
+                @include dimensions(100%,100%,0,0,relative,none);
+                object-fit: cover;
+            }
+            .sciliInner{
+                position: absolute;
+                top: 15%;
+                left: 31%;
+                right: 0;
+                bottom: 15%;
+                width: 57%;
+                height: 54vh;
+                overflow: hidden;
+                z-index: 1000;
+                .sciliInnerImage{
+                    @include dimensions(100%,100%,0,0,relative,none);
+                    object-fit: contain;
+                    border: 3px solid black;
+                }
+            }
+        }
+        .sciRight{
+            @include dimensions(39%,auto,0,0,relative,none);
+            @include flexColumn();
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            .scirTop{
+                @include dimensions(100%,auto,2rem 1.2rem,0,relative,1px solid rgba(0,0,0,0.08));
+                @include flexColumn();
+                justify-content: center;
+                align-items: center;
+                .scirtTitle{
+                    font-family: -apple-system,system-ui,BlinkMacSystemFont,Arial,sans-serif;
+                    @include fonts(1.8rem,black,600,1);
+                }
+                .scirtContnet{
+                    @include fonts(1.1rem,black,600,0.8);
+                    @include measurements(.8rem 0 ,.2rem 0,relative,none);
+                    text-align: center;
+                }
+                
+            }
+        }
+    }
+}
