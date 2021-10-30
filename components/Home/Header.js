@@ -48,18 +48,7 @@ const Header = () => {
                             position: 'relative',
                             strok :'rgba(0,0,0,0.7)'
                         }}/>
-                        <p sytle = {{
-                            position: 'absolute',
-                            top: '0',
-                            right: '0',
-                            fontSize: '.9rem',
-                            backgroundColor: 'red',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            borderRadius: '50px'
-                        }}>6</p>
+                        
                     </div>
                     <PlusCircleIcon onClick = {() => setOpen(true)} className = {HomeNav.nciIconss } />
                     <div className= {HomeNav.nciExoplore}>

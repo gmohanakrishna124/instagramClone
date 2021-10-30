@@ -16,9 +16,10 @@ function signIn({providers}) {
                     <div className={SignSty.scirTop}>
                         <h1 className={SignSty.scirtTitle}>Instagram</h1>
                         <h6 className={SignSty.scirtContnet}>Sign up to see photos and videos from your friends.</h6>
-                        <div>
+                        <div className ={SignSty.scirtbutton}>
+
                             {Object.values(providers).map((provider) => (
-                                <div key={provider.name}>
+                                <div className={SignSty.scirtbInner} key={provider.name}>
                                     <SignInButton 
                                         providerId = {provider.id}
                                         providerName = {provider.name}
@@ -27,6 +28,17 @@ function signIn({providers}) {
                                     />
                                 </div>
                             ))}
+                        </div>
+                    </div>
+                    <div className={SignSty.scirBottom}>
+                        <p className={SignSty.scirbTitle}>Get The App</p>
+                        <div className={SignSty.scirbAppLinks}>
+                            <div className={SignSty.scirbalLeft}>
+                                <img className={SignSty.scirballImage} src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png" alt="appStore" />
+                            </div>
+                            <div className={SignSty.scirbalLeft}>
+                                <img className={SignSty.scirballImage} src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/e9cd846dc748.png" alt="googlePlay" />
+                            </div>
                         </div>
                     </div>
                 </div>

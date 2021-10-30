@@ -58,9 +58,18 @@
                     @include flexRow();
                     justify-content: flex-start;
                     .mcrtlLeft{
-                        @include dimensions(40px,40px,0,0,relative,none);
+                        @include dimensions(60px,60px,0,0 1rem 0 0,relative,none);
                         .mcrtllImage{
                             @include dimensions(100%,100%,0,0,relative,none);
+                            border-radius: 50px;
+                        }
+                    }
+                    .mcrtlMiddle{
+                        .mcrtlmTitle{
+                            @include fonts(.99rem,black,600,1);
+                        }
+                        .mcrtlmContent{
+                            @include fonts(.96rem,black,400,0.7);
                         }
                     }
                 }

@@ -46,14 +46,52 @@
                 align-items: center;
                 .scirtTitle{
                     font-family: -apple-system,system-ui,BlinkMacSystemFont,Arial,sans-serif;
-                    @include fonts(1.8rem,black,600,1);
+                    @include fonts(2.2rem,black,600,1);
                 }
                 .scirtContnet{
-                    @include fonts(1.1rem,black,600,0.8);
+                    @include fonts(1.1rem,black,600,0.7);
                     @include measurements(.8rem 0 ,.2rem 0,relative,none);
                     text-align: center;
                 }
-                
+                .scirtbutton{
+                    @include dimensions(100%,auto,0,.8rem 0 0 0,relative,none);
+                    .scirtbInner{
+                        @include dimensions(100%,5vh,0,0,relative,none);
+                        @include flexRow();
+                        justify-content: center;
+                        background-color: #0095F6;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        .scirtbiButton{
+                            @include fonts(.92rem,white,550,1);
+                            background-color: transparent;
+                            border: none;
+                            outline: none;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+            .scirBottom{
+                @include dimensions(100%,auto,0,1.6rem 0 ,relative,none);
+                @include flexColumn();
+                align-items: center;
+                .scirbTitle{
+                    @include fonts(.87rem,black,400,1);
+                    @include measurements(0,.2rem 0 .8rem 0,relative,none);
+                }
+                .scirbAppLinks{
+                    @include dimensions(100%,auto,0rem 1.5rem,0,relative,none);
+                    @include flexRow();
+                    .scirbalLeft{
+                        @include dimensions(45%,7vh,0,0,relative,none);
+                        .scirballImage{
+                            @include dimensions(100%,100%,0,0,relative,none);
+                            object-fit: contain;
+                            cursor: pointer;
+                        }
+                    }
+                }
             }
         }
     }

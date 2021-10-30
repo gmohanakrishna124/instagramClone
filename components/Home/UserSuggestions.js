@@ -18,18 +18,25 @@ const UserSuggestions = () => {
     },[])
     return (
         <div className = {UsSuggeSty.uSContainer}>
-            <div className = "">
-                <h5 className = "">Suggestions for you</h5>
-                <p className = ""><a href="#">See All</a></p>
+            <div className = {UsSuggeSty.uscTop}>
+                <h5 className = {UsSuggeSty.usctTitle}>Suggestions for you</h5>
+                <p className = {UsSuggeSty.usctLink}><a className={UsSuggeSty.usctlInner} href="#">See All</a></p>
             </div>
-            <div className = "">
+            <div className = {UsSuggeSty.uscBottom}>
                 {suggestionDetails.map(({id,username,avatar,company})=>(
-                    <UserSuggestion 
-                        id = {id}
-                        profileName = {username}
-                        profileImage = {avatar}
-                        description  = {company}
-                    />
+                     <div index={id} className={UsSuggeSty.uscbInner}>
+                        <div className={UsSuggeSty.uscbiLeft}>
+                            <div className={UsSuggeSty.uscbilAvatarContainer}>
+                                <img className={UsSuggeSty.uscbilAvatar} src={avatar} alt="profileImages" />
+                            </div>
+                            <h6 className={UsSuggeSty.uscbilTitle}>{username}</h6>
+                        </div>
+                         <p ><a style={{
+                             textDecoration:'none',
+                             fontSize:'.91rem',
+                             color:'#0095F6',
+                         }} href="#">Follow</a></p>
+                    </div>
                 ))}
             </div>
         </div>
