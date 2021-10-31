@@ -14,3 +14,7 @@ bearerToker=AAAAAAAAAAAAAAAAAAAAAO0JVQEAAAAAueXNaH4PVRFGD2O03a%2Bp1aq264s%3DMka8
                 </div>
             ))}
         </div>
+
+<div className= {HomeNav.nciLogoContainer}>
+                    <img className = {HomeNav.ncilcLogo} src ="https://th.bing.com/th/id/R.2580ed352090d47b1a01b644423b48fd?rik=c4%2fQlohtbcjWcg&riu=http%3a%2f%2fwww.pngmart.com%2ffiles%2f13%2fInstagram-Logo-PNG-Free-Download.png&ehk=0IXSn1hA7SRgFYVs5xeZyWLe9pLQPaLzMtyP7X%2fCiA8%3d&risl=&pid=ImgRaw&r=0" alt="instagramLogo"/>
+                </div>

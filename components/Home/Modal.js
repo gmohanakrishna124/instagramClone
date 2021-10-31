@@ -22,13 +22,13 @@ const Modal = () => {
         }
 
         reader.onload = (readerEvent)=>{
-            setSelectedFile(readerEvent.target.results);
+            setSelectedFile(readerEvent.target.result);
         }
     }
     const uploadPost = async ()=>{
         if(load) return;
         setLoad(true);
-
+        //adding post to firebase post collection
         const docRef = await addDoc(collection(db,'posts'),{
             username: session.user.username,
             caption: captionRef.current.value,
@@ -37,17 +37,22 @@ const Modal = () => {
         })
 
         console.log("New doc added with d",docRef.id);
-        const imageRef = ref(storage, 'posts/${docRef.id}/image')
-        await uploadString(imageRef, selectedFile, "data_url").then(async sanpshot =>{
-            const downloadURL = await getDownloadURL(imageRef);
-            await updateDoc(doc(db,'posts',docRef.id,{
-                image: downloadURL
-            }))
-        })
-        setOpen(fase);
+        
+        //uploading the image to firebase sotrage with post id
+        const imageRef = ref(storage, 'posts/${docRef.id}/image');
+        await uploadString(imageRef, selectedFile, "data_url")
+        .then(
+            async (sanpshot) =>{
+                const downloadURL = await getDownloadURL(imageRef);
+                await updateDoc(doc(db,'posts',docRef.id),{
+                    image: downloadURL
+                });
+            }
+        );
+        setOpen(false);
         setLoad(false);
         setSelectedFile(null);
-    }
+    };
     return (
         <Transition.Root show = {open} style={{
             position:'fixed',
@@ -67,39 +72,49 @@ const Modal = () => {
                 height:'40vh',
             }}>
                     <h1>Hello World</h1>
-                    {selectedFile ? (
-                        <img style={{
-                            width:'100%',
-                            height:'30vh'
-                        }} src = {selectedFile} onClick={()=>setSelectedFile(null)} alt="image" />
-                    ) :(
-                        <div 
-                            onClick = {()=> filePickerRef.current.click()}
-                        >
-                            <CameraIcon 
-                                style ={{
-                                    width:'2.6rem',
-                                    height:'2.6rem'
-                                }}
-                            />
-                        </div>
-                    )}
-
-                    
-                    <input 
-                        ref = {filePickerRef}
-                        type='file'
-                        hidden
-                        onChange = {addImageToPost}
-                    />
-                    <input 
-                        type="text"
-                        ref={captionRef}
-                        placeholder="please enter a caption"
-                    />
-                    <button onClick={uploadPost} >
+                    <div style={{
+                        width:'100%',
+                        height:'auto'
+                    }}>
+                        {selectedFile ? (
+                            <img style={{
+                                width:'100%',
+                                height:'30vh'
+                            }} src = {selectedFile} onClick={()=>setSelectedFile(null)} alt="image" />
+                        ) :(
+                            <div 
+                                onClick = {()=> filePickerRef.current.click()}
+                            >
+                                <CameraIcon 
+                                    style ={{
+                                        width:'2.6rem',
+                                        height:'2.6rem'
+                                    }}
+                                    aria-hidden="true"
+                                />
+                            </div>
+                        )}
+                    </div>
+                <div>
+                    <div>
+                        <input 
+                            ref={filePickerRef}
+                            type="file"
+                            hidden
+                            onChange = {addImageToPost}
+                        />
+                    </div>
+                    <div >
+                        <input 
+                            type="text"
+                            ref={captionRef}
+                            placeholder="please enter a caption"
+                        />
+                    </div>
+                    <button type="button"  onClick={uploadPost} >
                         {load ? "uploading..." : "upload post"}
                     </button>
+                </div>
             </div>
         </Transition.Root>
     )

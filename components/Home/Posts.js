@@ -6,23 +6,37 @@ import Acessories from '../../public/images/acessories.jpg'
 import BestRider from '../../public/images/hero.jpg'
 import PostProfile from '../../public/images/profile.jpg'
 import InstagramLog from '../../public/images/instagramMobil.jpg'
+import { useState,useEffect } from 'react'
+import {db} from '../../firebase'
+import { onSnapshot,query, collection, orderBy } from '@firebase/firestore'
 const Posts = () => {
+    const [posts, setPosts] = useState([]);
+        
+    useEffect(()=>{
+       return (
+           onSnapshot(query(collection(db,'posts'), orderBy('timestamp','desc')), snapshot =>{
+            setPosts(snapshot.docs);
+            })
+       );  
+    },[db]);
+    console.log(posts);
     return (
         <div className = {PostsSty.postContainer}>
-            <div className = {PostsSty.pcInner}>
+           {posts.map((post)=>(
+            <div key={post.id} className = {PostsSty.pcInner}>
                 <div className= {PostsSty.pcTop}>
                     <div className = {PostsSty.pctLeft}>
                         <div className = {PostsSty.pctlImageCon}>
-                            <Image className = {PostsSty.pcticLogo} src ={AmazonLogo} layout="fill" />
+                            <img className = {PostsSty.pcticLogo} src ={post.data().profileImg} alt="postImage" />
                         </div>
-                        <h6 className={PostsSty.pctlTitle}>Microsoft</h6>
+                        <h6 className={PostsSty.pctlTitle}>{post.data().username}</h6>
                     </div>
                     <DotsHorizontalIcon style ={{
                         width:'20px'
                     }}/>
                 </div>
                 <div className ={PostsSty.pcMiddle}>
-                    <Image className= {PostsSty.pcmImage} src = {Acessories} layout="fill" />
+                    <img className= {PostsSty.pcmImage} src ={post.data().image} alt="profileImage" />
                 </div>
                 <div className={PostsSty.pcSubMiddle}>
                     <div className = {PostsSty.pcSubMiddleInner}>
@@ -34,7 +48,7 @@ const Posts = () => {
                         <BookmarkIcon className = {PostsSty.pcsmRightIcon}/>
                     </div>
                     <div className = {PostsSty.pcSubMiddleSecond}>
-                        <p className={PostsSty.pcsubTitle}>Microsoft's<span className={PostsSty.pcsubTitleInner}>It’s a frightfully good surprise.</span></p>
+                        <p className={PostsSty.pcsubTitle}>{post.data().username}</p>
                         <p className={PostsSty.pcComments}><a className={PostsSty.commetnLink} href="#">View all 200 comments</a></p>
                     </div>
                 </div>
@@ -45,33 +59,7 @@ const Posts = () => {
                     </form>
                 </div>
             </div>
-
-            <div className = {PostsSty.pcInner}>
-                <div className= {PostsSty.pcTop}>
-                    <div className = {PostsSty.pctLeft}>
-                        <div className = {PostsSty.pctlImageCon}>
-                            <Image className = {PostsSty.pcticLogo} src ={InstagramLog} layout="fill" />
-                        </div>
-                        <h6 className={PostsSty.pctlTitle}>Microsoft</h6>
-                    </div>
-                    <DotsHorizontalIcon style ={{
-                        width:'20px'
-                    }}/>
-                </div>
-                <div className ={PostsSty.pcMiddle}>
-                    <Image className= {PostsSty.pcmImage} src = {PostProfile} layout="fill" />
-                </div>
-                <div className = {PostsSty.pcSubMiddle}>
-                    <div className = {PostsSty.pcSubMiddleInner}>
-                        <div className ={PostsSty.pcsmLeftIcons}>
-                            <HeartIcon className = {PostsSty.pcsmliIcons}/>
-                            <ChatIcon className = {PostsSty.pcsmliIcons}/>
-                            <PaperAirplaneIcon className = {PostsSty.pcsmliIcons}/>
-                        </div>
-                        <BookmarkIcon className = {PostsSty.pcsmRightIcon}/>
-                    </div>
-                </div>
-            </div>
+            ))}
         </div>
     )
 }

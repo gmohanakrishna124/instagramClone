@@ -1,7 +1,6 @@
 import UsSuggeSty from '../../styles/scss/UserSuggestions.module.scss'
 import { useState,useEffect } from 'react'
 import faker from 'faker'
-import UserSuggestion  from './UserSuggestion'
 const UserSuggestions = () => {
     const [suggestionDetails, setSuggestionDetails] = useState([]);
     useEffect(()=>{

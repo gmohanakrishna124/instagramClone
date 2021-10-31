@@ -17,9 +17,11 @@ const Header = () => {
     return (
         <div className = {HomeNav.navContainer}>
             <div className={HomeNav.ncInner}>
-                <div className= {HomeNav.nciLogoContainer}>
-                    <Image className = {HomeNav.ncilcLogo} src ={Instagram} layout="fill" />
-                </div>
+                <h3 style={{
+                    fontSize:'1.8rem',
+                    fontWeight:'550',
+                    color:'black',
+                }}>Instagram</h3>
                 <div className = {HomeNav.nciSearch}>
                     <input className= {HomeNav.ncisInput} type="search" name="search" placeholder="Search" />
                     <SearchIcon  style = {{
