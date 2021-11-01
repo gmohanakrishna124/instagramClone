@@ -31,10 +31,9 @@
             }
         }
         .pcMiddle{
-            @include dimensions(100%,80vh,0,0,relative,none);
+            @include dimensions(100%,auto,0,0,relative,none);
             .pcmImage{
-                @include dimensions(100%,100%,0,0,relative,none);
-                object-fit: cover;
+                @include dimensions(100%,auto,0,0,relative,none);
             }
         }
         .pcSubMiddle{

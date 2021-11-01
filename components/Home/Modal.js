@@ -36,13 +36,13 @@ const Modal = () => {
             timestamp: serverTimestamp()
         })
 
-        console.log("New doc added with d",docRef.id);
+        console.log("New doc added with id",docRef.id);
         
         //uploading the image to firebase sotrage with post id
-        const imageRef = ref(storage, 'posts/${docRef.id}/image');
+        const imageRef = ref(storage, 'posts/'+ (docRef.id) +  '/image');
         await uploadString(imageRef, selectedFile, "data_url")
         .then(
-            async (sanpshot) =>{
+            async snapshot =>{
                 const downloadURL = await getDownloadURL(imageRef);
                 await updateDoc(doc(db,'posts',docRef.id),{
                     image: downloadURL
