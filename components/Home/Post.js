@@ -1,10 +1,28 @@
 import PostsSty from '../../styles/scss/PostsFeed.module.scss'
 import { useSession } from 'next-auth/react'
 import {DotsHorizontalIcon, PaperAirplaneIcon,ChatIcon, BookmarkIcon, HeartIcon, EmojiHappyIcon} from '@heroicons/react/outline'
-const Post = ({index, userName, userImage, postImage, postCaption}) => {
+import { useEffect, useState } from 'react'
+import {db} from '../../firebase'
+import {addDoc, collection, query, onSnapshot,  orderBy,  serverTimestamp} from '@firebase/firestore'
+const Post = ({id, userName, userImage, postImage, postCaption}) => {
     const {data:session} = useSession();
+    const [comment, setComment] = useState("");
+    const [cos, setCos] = useState([]);
+
+    const sendComment = async (e)=> {
+        e.preventDefault();
+        const commentToSend = comment;
+        setComment('');
+
+        await addDoc(collection(db, 'posts', id, 'comments'), {
+            comment: commentToSend,
+            username: session.user.username,
+            userImage: session.user.image,
+            timestamp: serverTimestamp(),
+        })
+    };
     return (
-        <div key={index} className = {PostsSty.pcInner}>
+        <div key={id} className = {PostsSty.pcInner}>
             <div className= {PostsSty.pcTop}>
                 <div className = {PostsSty.pctLeft}>
                     <div className = {PostsSty.pctlImageCon}>
@@ -39,8 +57,19 @@ const Post = ({index, userName, userImage, postImage, postCaption}) => {
                 <div className = {PostsSty.pcCommentField}>
                     <EmojiHappyIcon className={PostsSty.pccfiledEmojyHappy}/>
                     <form className={PostsSty.pccInputField}>
-                        <input className={PostsSty.pccinCommentField} type="text" name="comment" placeholder="Add a comment...." />
+                        <input value={comment} onChange={e =>{setComment(e.target.value)}} className={PostsSty.pccinCommentField} type="text" name="comment" placeholder="Add a comment...." />
                     </form>
+                    <button 
+                        type="submit"
+                        style={{
+                            posititon:'absolute',
+                            top:'0',
+                            right:'0',
+                            zIndex:'1000'
+                        }}
+                        disabled={!comment.trim()}
+                        onClick={sendComment}
+                    >Post</button>
                 </div>
             }
         </div>

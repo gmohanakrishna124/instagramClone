@@ -4,9 +4,10 @@ import {Dialog, Transition} from '@headlessui/react'
 import {Fragment, useRef, useState,} from 'react'
 import { CameraIcon } from '@heroicons/react/outline'
 import {db, storage} from '../../firebase'
-import { useSession} from 'next-auth/react'
+import {useSession} from 'next-auth/react'
 import {addDoc, collection, doc, serverTimestamp, updateDoc} from '@firebase/firestore'
 import { ref ,getDownloadURL,uploadString, updateMetadata} from '@firebase/storage'
+import { useEffect } from 'react'
 const Modal = () => {
     const {data: session} = useSession();
     const [open, setOpen] = useRecoilState(modalState);
@@ -56,6 +57,10 @@ const Modal = () => {
     return (
         <Transition.Root show = {open} style={{
             position:'fixed',
+            top:'0',
+            left:'0',
+            right:'0',
+            bottom:'0',
             zIndex:'1000',
             width:'100%',
             height:'100vh',
@@ -63,57 +68,188 @@ const Modal = () => {
             display:'flex',
             flexDirection:'column',
             justifyContent:'center',
-            alignItems:'center'
+            alignItems:'center',
         }} >
             <h4 onClick={()=>setOpen(false)}>Close</h4>
             <div style ={{
-                width:'25%',
-                backgroundColor:'orange',
-                height:'40vh',
+                width:'65%',
+                backgroundColor:'white',
+                height:'auto',
+                position:'relative',
+                borderRadius:'9px'
             }}>
-                    <h1>Hello World</h1>
-                    <div style={{
-                        width:'100%',
-                        height:'auto'
-                    }}>
-                        {selectedFile ? (
-                            <img style={{
-                                width:'100%',
-                                height:'30vh'
-                            }} src = {selectedFile} onClick={()=>setSelectedFile(null)} alt="image" />
-                        ) :(
-                            <div 
-                                onClick = {()=> filePickerRef.current.click()}
-                            >
-                                <CameraIcon 
-                                    style ={{
-                                        width:'2.6rem',
-                                        height:'2.6rem'
-                                    }}
-                                    aria-hidden="true"
-                                />
-                            </div>
-                        )}
-                    </div>
-                <div>
-                    <div>
-                        <input 
-                            ref={filePickerRef}
-                            type="file"
-                            hidden
-                            onChange = {addImageToPost}
-                        />
-                    </div>
-                    <div >
-                        <input 
-                            type="text"
-                            ref={captionRef}
-                            placeholder="please enter a caption"
-                        />
-                    </div>
-                    <button type="button"  onClick={uploadPost} >
-                        {load ? "uploading..." : "upload post"}
+                <div style={{
+                    width:'100%',
+                    height:'auto',
+                    padding:'.7rem .8rem',
+                    display:'flex',
+                    flexDirection:'row',
+                    justifyContent:'space-between',
+                    alignItems:'center',
+                    overflow:'hidden',
+                    borderBottom:'1px solid rgba(0,0,0,0.1)'
+                }}>
+                    <h6 style={{
+                        fontSize:'.97rem',
+                        fontWeigth:'600',
+                        opacity:'0.8',
+                        textAlign:'center',
+                        flexGrow:'1'
+                    }}>Create new post</h6>
+                     <button style={{
+                         float:'right',
+                         backgroundColor:'transparent',
+                         border:'none',
+                         outline:'none',
+                         cursor:'pointer',
+                         fontSize:'.93rem',
+                         color:'blue',
+                     }} type="button"  onClick={uploadPost} >
+                        {load ? "Sharing..." : "Share"}
                     </button>
+                </div>
+                <div style={{
+                    width:'100%',
+                    height:'auto',
+                    display:'flex',
+                    justifyContent:'center',
+                    alignItems:'flex-start',
+                }}>
+                    <div style={{
+                        width:'62%',
+                        height:'70vh',
+                        position:'relative',
+                    }}>
+                        <div style={{
+                            width:'100%',
+                            height:'100%',
+                            display:'flex',
+                            justifyContent:'center',
+                            alignItems:'center'
+                        }}>
+                            {selectedFile ? (
+                                <img style={{
+                                    width:'100%',
+                                    height:'100%',
+                                    objectFit:'cover'
+                                }} src = {selectedFile} onClick={()=>setSelectedFile(null)} alt="image" />
+                            ) :(
+                                <div style={{
+                                    display:'flex',
+                                    flexDirection:'column',
+                                    justifyContent:'center',
+                                    alignItems:'center'
+                                }}>
+                                    <div 
+                                        onClick = {()=> filePickerRef.current.click()}
+                                        style={{
+                                            width:'2.9rem',
+                                            height:'2.9rem',
+                                            backgroundColor:'orangered',
+                                            borderRadius:'50px',
+                                            padding:'.3rem .3rem',
+                                            cursor:'pointer',
+                                            display:'flex',
+                                            justifyContent:'center',
+                                            alignItems:'center',
+
+                                        }}
+                                    >
+                                        <CameraIcon 
+                                            style ={{
+                                                width:'2.8rem',
+                                                height:'2.8rem',
+                                            }}
+                                            aria-hidden="true"
+                                        />
+                                    </div>
+                                    <h5 style ={{
+                                        color:"black",
+                                        fontWeight:'550',
+                                        fontSize:'1.04rem',
+                                        paddingTop:'.7rem'
+                                    }}>Upload Picture</h5>
+                                </div>
+                            )}
+                        </div>
+                        <div>
+                            <input 
+                                ref={filePickerRef}
+                                type="file"
+                                hidden
+                                onChange = {addImageToPost}
+                            />
+                        </div>
+                    </div>
+                    <div style = {{
+                        width:'38%',
+                        height:'100%',
+                        display:'flex',
+                        flexDirection:'column',
+                        justifyContent:'flex-start',
+                        alignItems:'flex-start',
+                        position:'relative',
+                        padding:'0 .8rem'
+                    }}>
+                        <div style={{
+                            width:'100%',
+                            display:'flex',
+                            flexDirection:'row',
+                            justifyContent:'flex-start',
+                            algnItems:'flex-start',
+                            position:'relative',
+                            padding:'1rem .1rem'
+                        }}>
+                            <div style={{
+                                width:'2.4rem',
+                                height:'2.4rem',
+                                position:'relative'
+                            }}>
+                                <img style={{
+                                    width:'100%',
+                                    height:'100%',
+                                    objectFit:'cover',
+                                    borderRadius:'50px'
+                                }} src = {session?.user?.image} alt="profile Image" />
+                            </div> 
+                            <h6 style={{
+                                fontSize:'.92rem',
+                                fontWeight:'550',
+                                color:'black',
+                                display:'flex',
+                                flexDirection:'column',
+                                justifyContent:'center',
+                                alignItems:'flex-start',
+                                marginLeft:'.8rem'
+                            }}>{session?.user?.username}</h6>
+                        </div>
+                        <div style={{
+                            width:'100%',
+                            height:'6vh',
+                            position:'relative',
+                            padding:'.3rem .1rem'
+                        }}>
+                            <input 
+                                style={{
+                                    position:'absolute',
+                                    top:'0',
+                                    left:'0',
+                                    right:'0',
+                                    bottom:'0',
+                                    width:'100%',
+                                    height:'100%',
+                                    fontSize:'1.01rem',
+                                    fontWeight:'400',
+                                    paddingLeft:'.3rem',
+                                    border:'none',
+                                    outline:'none'
+                                }}
+                                type="text"
+                                ref={captionRef}
+                                placeholder="Write a caption..."
+                            />
+                        </div>
+                    </div>
                 </div>
             </div>
         </Transition.Root>

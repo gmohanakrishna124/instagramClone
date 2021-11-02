@@ -47,7 +47,7 @@ const Posts = () => {
                 (
                     dummyData.map((dData) => (
                         <Post 
-                            index = {dData.id}
+                            id = {dData.id}
                             userName = {dData.uName}
                             userImage = {dData.uImage}
                             postImage = {dData.pImage}
