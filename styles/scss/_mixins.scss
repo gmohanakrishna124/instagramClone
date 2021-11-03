@@ -41,8 +41,14 @@
     opacity: $fontOpacity;
 }
 //media queries break points
-@mixin for-extra-small-mobiles() {
-    @media (max-width: 768px) {
+@mixin for-mobiles() {
+    @media (max-width:600px) {
+        @content;
+    }
+}
+
+@mixin for-tablets(){
+    @media (min-width: 601px) and (max-width:768px){
         @content;
     }
 }

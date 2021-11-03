@@ -10,7 +10,16 @@
         margin: auto;
         padding: .3rem 0;
         @include flexRow();
-
+        @include for-mobiles(){
+            width: 100%;
+            margin: 0;
+            padding: .3rem .4rem;
+        }
+        @include for-tablets(){
+            width: 100%;
+            margin: 0;
+            padding: .3rem .7rem;
+        }
         .nciLogoContainer{
             @include dimensions(8.6rem,3rem,0,0,relative,none);
             .ncilcLogo{
@@ -22,7 +31,15 @@
         .nciSearch{
             @include dimensions(24%,4vh,0,0,relative,none);
             @include flexRow();  
-            margin-left: auto;      
+            margin-left: auto;   
+            @include for-mobiles(){
+                display: none;
+                margin: 0;
+            }   
+            @include for-tablets(){
+                display: block;
+                align-items: center;
+            }
             .ncisInput{
                 @include dimensions(100%,100%,0,0,relative,none);
                 border: 1px solid rgba(0,0,0,0.2);
