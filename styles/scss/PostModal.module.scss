@@ -1,0 +1,88 @@
+@import './mixins';
+.modalContainer{
+    .mcInner{
+        @include dimensions(65%,auto,0,0,relative,none);
+        background-color: white;
+        border-radius: 9px;
+        @include for-mobiles(){
+            width: 78%;
+            min-width: 355px;
+            overflow-x: scroll;
+        }
+        @include for-tablets(){
+            width: 500px;
+        }
+        @include for-laptops(){
+            width: 550px;
+        }
+        @include for-desktops(){
+            width: 70%;
+        }
+        .mciTop{
+            @include dimensions(100%,auto,.7rem .8rem,0,relative,none);
+            @include flexRow();
+            overflow: hidden;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            .mcitTitle{
+                @include fonts(.97rem,black,600,0.8);
+                text-align: center;
+                flex-grow: 1;
+            }
+            .mcitButton{
+                float: right;
+                background-color:transparent;
+                border:none;
+                outline:none;
+                cursor:pointer;
+                font-size:.93rem;
+                color:blue;
+            }
+        }
+        .mciBottom{
+            @include dimensions(100%,auto,0,0,relative,none);
+            @include flexRow();
+            align-items: flex-start;
+            @include for-mobiles(){
+                flex-direction: column;
+            }
+            @include for-tablets(){
+                flex-direction: column;
+            }
+            @include for-laptops(){
+                flex-direction: column;
+            }
+            .mcibLeft{
+                @include dimensions(62%,70vh,0,0,relative,none);
+                @include for-mobiles(){
+                    width: 100%;
+                    height: 50vh;
+                }
+                @include for-tablets(){
+                    width: 100%;
+                    height: 50vh;
+                }
+                @include for-laptops(){
+                    width: 100%;
+                    height: 50vh;
+                }
+                @include for-desktops(){
+                    height: 65vh;
+                }
+            }
+            .mcibRight{
+                @include dimensions(38%,100%,0 .8rem,0,relative,none);
+                @include flexColumn();
+                justify-content: flex-start;
+                @include for-mobiles(){
+                    width: 100%;
+                }
+                @include for-tablets(){
+                    width: 100%;
+                }
+                @include for-laptops(){
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

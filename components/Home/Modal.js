@@ -8,6 +8,7 @@ import {useSession} from 'next-auth/react'
 import {addDoc, collection, doc, serverTimestamp, updateDoc} from '@firebase/firestore'
 import { ref ,getDownloadURL,uploadString, updateMetadata} from '@firebase/storage'
 import { useEffect } from 'react'
+import ModalSty from '../../styles/scss/PostModal.module.scss'
 const Modal = () => {
     const {data: session} = useSession();
     const [open, setOpen] = useRecoilState(modalState);
@@ -55,7 +56,7 @@ const Modal = () => {
         setSelectedFile(null);
     };
     return (
-        <Transition.Root show = {open} style={{
+        <Transition.Root className={ModalSty.modalContainer} show = {open} style={{
             position:'fixed',
             top:'0',
             left:'0',
@@ -71,55 +72,15 @@ const Modal = () => {
             alignItems:'center',
         }} >
             <h4 onClick={()=>setOpen(false)}>Close</h4>
-            <div style ={{
-                width:'65%',
-                backgroundColor:'white',
-                height:'auto',
-                position:'relative',
-                borderRadius:'9px'
-            }}>
-                <div style={{
-                    width:'100%',
-                    height:'auto',
-                    padding:'.7rem .8rem',
-                    display:'flex',
-                    flexDirection:'row',
-                    justifyContent:'space-between',
-                    alignItems:'center',
-                    overflow:'hidden',
-                    borderBottom:'1px solid rgba(0,0,0,0.1)'
-                }}>
-                    <h6 style={{
-                        fontSize:'.97rem',
-                        fontWeigth:'600',
-                        opacity:'0.8',
-                        textAlign:'center',
-                        flexGrow:'1'
-                    }}>Create new post</h6>
-                     <button style={{
-                         float:'right',
-                         backgroundColor:'transparent',
-                         border:'none',
-                         outline:'none',
-                         cursor:'pointer',
-                         fontSize:'.93rem',
-                         color:'blue',
-                     }} type="button"  onClick={uploadPost} >
+            <div className={ModalSty.mcInner}>
+                <div className={ModalSty.mciTop}>
+                    <h6 className={ModalSty.mcitTitle}>Create new post</h6>
+                     <button className={ModalSty.mcitButton} type="button"  onClick={uploadPost} >
                         {load ? "Sharing..." : "Share"}
                     </button>
                 </div>
-                <div style={{
-                    width:'100%',
-                    height:'auto',
-                    display:'flex',
-                    justifyContent:'center',
-                    alignItems:'flex-start',
-                }}>
-                    <div style={{
-                        width:'62%',
-                        height:'70vh',
-                        position:'relative',
-                    }}>
+                <div className={ModalSty.mciBottom}>
+                    <div className={ModalSty.mcibLeft}>
                         <div style={{
                             width:'100%',
                             height:'100%',
@@ -181,16 +142,7 @@ const Modal = () => {
                             />
                         </div>
                     </div>
-                    <div style = {{
-                        width:'38%',
-                        height:'100%',
-                        display:'flex',
-                        flexDirection:'column',
-                        justifyContent:'flex-start',
-                        alignItems:'flex-start',
-                        position:'relative',
-                        padding:'0 .8rem'
-                    }}>
+                    <div className={ModalSty.mcibRight}>
                         <div style={{
                             width:'100%',
                             display:'flex',

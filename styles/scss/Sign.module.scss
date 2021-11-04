@@ -5,31 +5,94 @@
     justify-content: center;
     align-items: center;
     padding: 4rem 0 4rem 0;
+    @include for-mobiles(){
+        height: 100vh;
+        background-color: whitesmoke;
+    }
+    @include for-tablets(){
+        height: 100vh;
+        background-color: whitesmoke;
+    }
+    @include for-laptops(){
+        height: 100vh;
+        background-color: whitesmoke;
+    }
+    @include for-desktops(){
+        height: 100vh;
+        background-color: whitesmoke;
+    }
     .scInner{
         @include dimensions(60%,auto,0,auto,relative,none);
         @include flexRow();
         justify-content: center;
+        @include for-mobiles(){
+            width: 88%;
+        }
+        @include for-laptops(){
+            width: 92%;
+        }
+        @include for-desktops(){
+            width: 88%;
+        }
         .sciLeft{
             @include dimensions(51%,75vh,0,0,relative,none);
             overflow: hidden;
+            @include for-mobiles(){
+                display: none;
+            }
+            @include for-tablets(){
+                display: none;
+            }
+            @include for-laptops(){
+                height: auto;
+            }
+            @include for-desktops(){
+                height: auto;
+            }
             .scilImagee{
                 @include dimensions(100%,100%,0,0,relative,none);
-                object-fit: cover;
+                @include for-laptops(){
+                    height: auto;
+                }
+                @include for-desktops(){
+                    height: auto;
+                    max-height: 650px;
+                }
             }
             .sciliInner{
                 position: absolute;
-                top: 15%;
-                left: 31%;
+                top: 15.8%;
+                left: 32.7%;
                 right: 0;
                 bottom: 15%;
-                width: 57%;
-                height: 54vh;
+                width: 54.5%;
+                height: auto;
                 overflow: hidden;
                 z-index: 1000;
+                @include for-laptops(){
+                    height: auto;
+                    bottom: 15%;
+                    width: 54%;
+                    left: 33%;
+                    top: 15.7%;
+                }
+                @include for-desktops(){
+                    height: auto;
+                    width: 54%;
+                    left: 32.7%;
+                    top: 15.59%;
+                }
                 .sciliInnerImage{
-                    @include dimensions(100%,100%,0,0,relative,none);
+                    @include dimensions(100%,auto,0,0,relative,none);
                     object-fit: contain;
                     border: 3px solid black;
+                    @include for-laptops(){
+                        height: auto;
+                        object-fit: contain;
+                    }
+                    @include for-desktops(){
+                        height: auto;
+                    }
                 }
             }
         }
@@ -39,8 +102,14 @@
             align-items: center;
             justify-content: center;
             background-color: white;
+            @include for-mobiles(){
+                width: 100%;
+            }
+            @include for-tablets(){
+                width: 700px;
+            }
             .scirTop{
-                @include dimensions(100%,auto,2rem 1.2rem,0,relative,1px solid rgba(0,0,0,0.08));
+                @include dimensions(100%,auto,2rem 1.2rem,0 0 0rem 0,relative,1px solid rgba(0,0,0,0.08));
                 @include flexColumn();
                 justify-content: center;
                 align-items: center;

@@ -17,12 +17,12 @@ const Stories = () => {
     },[])
     return (
         <div className = {MainSty.mclTop}>
-            {session &&
+            {session && (
                 <Storie 
                     name = {session?.user?.name}
                     image = {session?.user?.image}
                 />
-            }
+            )}   
             {storieData.map(({id,username, avatar})=>(
                 <Storie 
                     key  = {id}

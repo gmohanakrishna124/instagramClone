@@ -40,7 +40,7 @@
     font-weight: $fontWeight;
     opacity: $fontOpacity;
 }
-//media queries break points
+//media queries devices break points
 @mixin for-mobiles() {
     @media (max-width:600px) {
         @content;
@@ -49,6 +49,18 @@
 
 @mixin for-tablets(){
     @media (min-width: 601px) and (max-width:768px){
+        @content;
+    }
+}
+
+@mixin for-laptops{
+    @media (min-width: 769px) and (max-width:999px){
+        @content;
+    }
+}
+
+@mixin for-desktops{
+    @media (min-width: 1000px) and (max-width: 1199px){
         @content;
     }
 }

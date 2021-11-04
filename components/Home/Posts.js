@@ -29,33 +29,17 @@ const Posts = () => {
             setPosts(snapshot.docs);
         }), 
     [db]);
-    console.log(posts);
     return (
         <div className = {PostsSty.postContainer}>
-            {session ? 
-                (
-                    posts.map( post => (
-                        <Post 
-                            index = {post.id}
-                            userName = {post.data().username}
-                            userImage = {post.data().profileImg}
-                            postImage = {post.data().image}
-                            postCaption= {post.data().caption}
-                        />
-                    ))
-                ) :
-                (
-                    dummyData.map((dData) => (
-                        <Post 
-                            id = {dData.id}
-                            userName = {dData.uName}
-                            userImage = {dData.uImage}
-                            postImage = {dData.pImage}
-                            postCaption = {dData.pCaption}
-                        />
-                    ))
-                )
-            }
+           {posts.map( post => (
+                <Post 
+                    id = {post.id}
+                    userName = {post.data().username}
+                    userImage = {post.data().profileImg}
+                    postImage = {post.data().image}
+                    postCaption= {post.data().caption}
+                />
+            ))}
         </div>
     )
 }
