@@ -21,6 +21,18 @@
         height: 100vh;
         background-color: whitesmoke;
     }
+    .scTop{
+        @include dimensions(100%,auto,0 2rem 0 0,0,relative,none);
+        @include flexRow();
+        justify-content: flex-end;
+        .sctLink{
+            @include fonts(.94rem,#0095F6,600,1);
+            cursor:pointer;
+            &:hover{
+                color: blue;
+            }
+        }
+    }
     .scInner{
         @include dimensions(60%,auto,0,auto,relative,none);
         @include flexRow();

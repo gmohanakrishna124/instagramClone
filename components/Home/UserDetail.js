@@ -1,6 +1,4 @@
 import MainSty from '../../styles/scss/MainFeed.module.scss'
-import InstagramMobileLogo from '../../public/images/instagramMobil.jpg'
-import Image from 'next/dist/client/image'
 import {signOut, useSession} from 'next-auth/react'
 const UserDetail = ()=>{
     const {data : session} = useSession();

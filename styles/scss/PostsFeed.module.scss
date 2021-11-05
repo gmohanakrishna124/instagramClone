@@ -107,6 +107,20 @@
                 @include flexColumn();
                 background-color: white;
                 border-radius: 5px;
+                @include for-mobiles(){
+                    width: 400px;
+                    margin:0 auto;
+                    min-width:350px;
+                }
+                @include for-tablets(){
+                    width: 443px;
+                }
+                @include for-laptops(){
+                    width: 453px;
+                }
+                @include for-desktops(){
+                    width: 458px;
+                }
                 .pccfiTop{
                     @include dimensions(100%,auto,.5rem .9rem, 0,relative,none);
                     @include flexRow();

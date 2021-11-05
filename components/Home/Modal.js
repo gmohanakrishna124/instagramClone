@@ -71,7 +71,11 @@ const Modal = () => {
             justifyContent:'center',
             alignItems:'center',
         }} >
-            <h4 onClick={()=>setOpen(false)}>Close</h4>
+            <div className={ModalSty.mcTop} onClick={()=>setOpen(false)}>
+                <svg  xmlns="http://www.w3.org/2000/svg"  fill="white" viewBox="0 0 24 24" stroke="currentColor" className={ModalSty.mcTopLogo} onClick={()=>setOpen(false)}>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </div>
             <div className={ModalSty.mcInner}>
                 <div className={ModalSty.mciTop}>
                     <h6 className={ModalSty.mcitTitle}>Create new post</h6>

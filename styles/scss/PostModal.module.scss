@@ -1,5 +1,21 @@
 @import './mixins';
 .modalContainer{
+    .mcTop{
+        @include dimensions(65%,auto,.5rem 0 ,0,relative,none);
+        @include flexRow();
+        justify-content: flex-end;
+        margin: 0 auto;
+        .mcTopLogo{
+            @include dimensions(29px,32px,0,0,relative,none);
+            color: white;
+            cursor: pointer;
+            transform: scale(1);
+            transition: transform .5s ease-in;
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+    }
     .mcInner{
         @include dimensions(65%,auto,0,0,relative,none);
         background-color: white;
@@ -53,6 +69,7 @@
             }
             .mcibLeft{
                 @include dimensions(62%,70vh,0,0,relative,none);
+                border-right: 1px solid rgba(0,0,0,0.06);
                 @include for-mobiles(){
                     width: 100%;
                     height: 50vh;
