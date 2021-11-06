@@ -12,7 +12,7 @@ const Header = () => {
     const {data : session} = useSession();
     const [open, setOpen] = useRecoilState(modalState);
     return (
-        <div className = {HomeNav.navContainer}>
+        <div className = {HomeNav.navContainer} style={{boxShadow:'0 8px 19px rgb(245,245,245)'}}>
             <div className={HomeNav.ncInnner}>
                 <div className={HomeNav.ncLeft}>
                     <img className={HomeNav.nclImage} src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2880px-Instagram_logo.svg.png" alt="instagram name Logo" />
